@@ -1,0 +1,49 @@
+[% # $Id: README.tt 1979 2008-04-16 00:09:26Z cjm $ %]
+Module::Build::DistVersion version [%version%], released [%date%]
+
+
+This is a subclass of Module::Build intended for module authors.
+It modifies the distdir action to collect the version number and
+release date from the official locations and distribute them to the
+other places they should appear.
+
+Only the module maintainer (who creates distribution files and uploads
+them to CPAN) needs to install Module::Build::DistVersion.  Users who
+simply want to install the module only need to have the normal
+Module::Build installed.
+
+
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+	perl Build.PL
+	./Build
+	./Build test
+	./Build install
+
+
+DEPENDENCIES
+
+Module::Build 0.28 or later
+Template Toolkit 2
+File::Spec
+Tie::File
+
+
+
+CHANGES
+    Here's what's new in version [%version%] of Module::Build::DistVersion:
+    (See the file "Changes" for the full revision history.)
+
+[%changes%]
+
+
+
+COPYRIGHT AND LICENSE
+
+Copyright 2008 Christopher J. Madsen
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.

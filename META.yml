@@ -1,0 +1,30 @@
+---
+name: Module-Build-DistVersion
+version: 0.01
+author:
+  - 'Christopher J. Madsen <perl@cjmweb.net>'
+abstract: Copy version numbers to secondary locations
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  File::Glob: 0
+  File::Spec: 0
+  Module::Build: 0.28
+  Template: 2
+  Tie::File: 0
+  perl: 5.8.0
+build_requires:
+  FindBin: 0
+  Test::More: 0
+dynamic_config: 0
+provides:
+  Module::Build::DistVersion:
+    file: lib/Module/Build/DistVersion.pm
+    version: 0.01
+  Module::Build::DistVersion::SaveStats:
+    file: lib/Module/Build/DistVersion.pm
+generated_by: Module::Build version 0.2808
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
