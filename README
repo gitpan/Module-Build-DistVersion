@@ -1,4 +1,4 @@
-Module::Build::DistVersion version 0.01, released Apr 15 2008
+Module::Build::DistVersion version 0.02, released April 25, 2008
 
 This is a subclass of Module::Build intended for module authors.
 It modifies the distdir action to collect the version number and
@@ -32,10 +32,13 @@ Tie::File
 
 
 CHANGES
-    Here's what's new in version 0.01 of Module::Build::DistVersion:
+    Here's what's new in version 0.02 of Module::Build::DistVersion:
     (See the file "Changes" for the full revision history.)
 
-	- Initial release
+	- Added optional changes=N argument
+	- Don't index the tools directory
+	- Note that subclasses should "use Module::Build"
+	  before trying to load Module::Build::DistVersion
 
 
 

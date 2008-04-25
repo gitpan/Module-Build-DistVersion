@@ -5,7 +5,7 @@ package Module::Build::DistVersion;
 #
 # Author: Christopher J. Madsen <perl@cjmweb.net>
 # Created: February 29, 2008
-# $Id: DistVersion.pm 1974 2008-03-08 23:23:46Z cjm $
+# $Id: DistVersion.pm 1986 2008-04-25 05:38:14Z cjm $
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the same terms as Perl itself.
@@ -29,7 +29,7 @@ use base 'Module::Build';
 #=====================================================================
 # Package Global Variables:
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 #=====================================================================
 # Package Module::Build::DistVersion:
@@ -105,6 +105,9 @@ sub DV_check_Changes
 
   my $version = $self->dist_version;
 
+  # Get the number of releases to include from Changes:
+  my $list_releases = $self->args('changes') || 1;
+
   # Read the Changes file and find the line for dist_version:
   open(my $Changes, '<:utf8', $file) or die "ERROR: Can't open $file: $!";
 
@@ -117,7 +120,7 @@ sub DV_check_Changes
       $release_date = $2;
       $text = '';
       while (<$Changes>) {
-        last if /^\S/;
+        last if /^\S/ and --$list_releases <= 0;
         $text .= $_;
       }
       $text =~ s/\s*\z/\n/;     # Normalize trailing whitespace
@@ -318,7 +321,7 @@ Module::Build::DistVersion - Copy version numbers to secondary locations
 
 =head1 VERSION
 
-This document describes version 0.01 of Module::Build::DistVersion, released Apr 15 2008.
+This document describes version 0.02 of Module::Build::DistVersion, released April 25, 2008.
 
 
 =head1 SYNOPSIS
@@ -345,6 +348,7 @@ In F<Build.PL>:
 or, if you need to subclass Module::Build for other reasons:
 
   package My_Custom_Build_Package;
+  use Module::Build ();
   BEGIN {
     eval q{ use base 'Module::Build::DistVersion'; };
     eval q{ use base 'Module::Build'; } if $@;
@@ -394,7 +398,11 @@ distribution version, or the process stops here with an error.
 It reads each file matching F<tools/*.tt> and processes it with
 Template Toolkit.  Each template file produces a file in the main
 directory.  For example, F<tools/README.tt> produces F<README>.  Any
-number of templates may be present.
+number of templates may be present.  If you ship the tools directory
+with your module (and I recommend you do), you should tell CPAN not to
+index it by including C<no_index> in your Build.PL parameters:
+
+  meta_merge => { no_index => { directory => ['tools'] } },
 
 Each template may use the following variables:
 
@@ -406,6 +414,11 @@ The changes in the current release.  This is a string containing all
 lines in F<Changes> following the version/release date line up to (but
 not including) the next line that begins with a non-whitespace
 character (or end-of-file).
+
+You can include the changes from more than one release by using
+C<./Build distdir changes=B<N>> (where B<N> is the number of releases
+you want to list).  This is useful when you make a major release
+immediately followed by a bugfix release.
 
 =item C<date>
 

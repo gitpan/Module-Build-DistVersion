@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 #---------------------------------------------------------------------
-# $Id: Build.PL 1969 2008-03-02 00:22:39Z cjm $
+# $Id: Build.PL 1986 2008-04-25 05:38:14Z cjm $
 # Copyright 2008 Christopher J. Madsen
 #
 # Build.PL for Module::Build::DistVersion
@@ -33,6 +33,9 @@ my $builder = Module::Build::DistVersion->new(
   },
   create_makefile_pl => 'passthrough',
   dynamic_config     => 0,
+  meta_merge         => {
+    no_index  => { directory => ['tools'] },
+  },
 );
 
 $builder->create_build_script();
