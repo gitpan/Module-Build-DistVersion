@@ -5,7 +5,7 @@ package Module::Build::DistVersion;
 #
 # Author: Christopher J. Madsen <perl@cjmweb.net>
 # Created: February 29, 2008
-# $Id: DistVersion.pm 1986 2008-04-25 05:38:14Z cjm $
+# $Id: DistVersion.pm 1991 2008-04-26 03:19:15Z cjm $
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the same terms as Perl itself.
@@ -29,7 +29,7 @@ use base 'Module::Build';
 #=====================================================================
 # Package Global Variables:
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 #=====================================================================
 # Package Module::Build::DistVersion:
@@ -210,9 +210,11 @@ sub DV_update_pod_version
   tie my @lines, 'Tie::File', $pmFile or die "ERROR: Can't open $pmFile: $!";
 
   my $i = 0;
+  my $foundHeading;
 
   # Find the VERSION section:
   while (defined $lines[$i] and not $lines[$i] =~ /^=head1 VERSION/) {
+    $foundHeading = 1 if not $foundHeading and $lines[$i] =~ /^=head/;
     ++$i;
   }
 
@@ -221,7 +223,8 @@ sub DV_update_pod_version
 
   # Verify the section:
   if (not defined $lines[$i]) {
-    die "ERROR: $pmFile has no VERSION section\n";
+    # It's ok to have no VERSION section if you have no POD:
+    die "ERROR: $pmFile has no VERSION section\n" if $foundHeading;
   } elsif (not $lines[$i] =~ /^This (?:section|document)/) {
     die "ERROR: $pmFile: Unexpected line $lines[$i]";
   } else {
@@ -321,7 +324,7 @@ Module::Build::DistVersion - Copy version numbers to secondary locations
 
 =head1 VERSION
 
-This document describes version 0.02 of Module::Build::DistVersion, released April 25, 2008.
+This document describes version 0.03 of Module::Build::DistVersion, released April 25, 2008.
 
 
 =head1 SYNOPSIS

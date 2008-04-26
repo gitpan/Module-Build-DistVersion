@@ -1,6 +1,6 @@
 ---
 name: Module-Build-DistVersion
-version: 0.02
+version: 0.03
 author:
   - 'Christopher J. Madsen <perl@cjmweb.net>'
 abstract: Copy version numbers to secondary locations
@@ -21,7 +21,7 @@ dynamic_config: 0
 provides:
   Module::Build::DistVersion:
     file: lib/Module/Build/DistVersion.pm
-    version: 0.02
+    version: 0.03
   Module::Build::DistVersion::SaveStats:
     file: lib/Module/Build/DistVersion.pm
 generated_by: Module::Build version 0.2808
