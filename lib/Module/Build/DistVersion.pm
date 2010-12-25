@@ -5,7 +5,6 @@ package Module::Build::DistVersion;
 #
 # Author: Christopher J. Madsen <perl@cjmweb.net>
 # Created: February 29, 2008
-# $Id: DistVersion.pm 1991 2008-04-26 03:19:15Z cjm $
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the same terms as Perl itself.
@@ -15,7 +14,7 @@ package Module::Build::DistVersion;
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See either the
 # GNU General Public License or the Artistic License for more details.
 #
-# Copy module version numbers to secondary locations at Build distdir
+# ABSTRACT: Copy version numbers to secondary locations
 #---------------------------------------------------------------------
 
 use 5.008;
@@ -29,7 +28,7 @@ use base 'Module::Build';
 #=====================================================================
 # Package Global Variables:
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 #=====================================================================
 # Package Module::Build::DistVersion:
@@ -324,8 +323,19 @@ Module::Build::DistVersion - Copy version numbers to secondary locations
 
 =head1 VERSION
 
-This document describes version 0.03 of Module::Build::DistVersion, released April 25, 2008.
+This document describes version 0.04 of
+Module::Build::DistVersion, released December 24, 2010.
 
+=head1 WARNING
+
+B<This module is deprecated.> L<Dist::Zilla> provides a much more
+flexible way to transform your distribution's files at release time.
+L<Dist::Zilla::Plugin::TemplateCJM> is the replacement for this module,
+although it uses a different template syntax.
+
+You can see an example of converting a dist from
+Module::Build::DistVersion to Dist::Zilla at
+L<http://github.com/madsen/module-build-distversion>.
 
 =head1 SYNOPSIS
 
@@ -369,7 +379,6 @@ or, if you need to subclass Module::Build for other reasons:
   END
     $self->SUPER::ACTION_distdir(@_);
   } # end ACTION_distdir
-
 
 =head1 DESCRIPTION
 
@@ -615,7 +624,6 @@ See the L<Template> documentation for more information.
 
 =back
 
-
 =head1 CONFIGURATION AND ENVIRONMENT
 
 All files matching F<tools/*.tt> are assumed to be templates for
@@ -652,8 +660,6 @@ For example, to customize the Template configuration, you might use
              } },
   );
 
-
-
 =head1 DEPENDENCIES
 
 L<Module::Build> 0.28 or later, L<Template> Toolkit 2, L<File::Spec>,
@@ -663,29 +669,28 @@ and L<Tie::File>.
 
 None reported.
 
-
 =head1 BUGS AND LIMITATIONS
 
 No bugs have been reported.
 
-
 =head1 AUTHOR
 
-Christopher J. Madsen  S<< C<< <perl AT cjmweb.net> >> >>
+Christopher J. Madsen  S<C<< <perl AT cjmweb.net> >>>
 
 Please report any bugs or feature requests to
-S<< C<< <bug-Module-Build-DistVersion AT rt.cpan.org> >> >>,
+S<C<< <bug-Module-Build-DistVersion AT rt.cpan.org> >>>,
 or through the web interface at
 L<http://rt.cpan.org/Public/Bug/Report.html?Queue=Module-Build-DistVersion>
 
+You can follow or contribute to Module-Build-DistVersion's development at
+L<< http://github.com/madsen/module-build-distversion >>.
 
-=head1 LICENSE AND COPYRIGHT
+=head1 COPYRIGHT AND LICENSE
 
-Copyright 2008 Christopher J. Madsen
+This software is copyright (c) 2010 by Christopher J. Madsen.
 
-This module is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself. See L<perlartistic>.
-
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =head1 DISCLAIMER OF WARRANTY
 
@@ -709,3 +714,5 @@ RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
 FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
 SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGES.
+
+=cut

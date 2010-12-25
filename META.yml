@@ -1,12 +1,19 @@
 ---
-name: Module-Build-DistVersion
-version: 0.03
+abstract: 'Copy version numbers to secondary locations'
 author:
   - 'Christopher J. Madsen <perl@cjmweb.net>'
-abstract: Copy version numbers to secondary locations
+build_requires:
+  Module::Build: 0.28
+  Test::More: 0
+configure_requires:
+  Module::Build: 0.28
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.200000, CPAN::Meta::Converter version 2.102400'
 license: perl
-resources:
-  license: http://dev.perl.org/licenses/
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Module-Build-DistVersion
 requires:
   File::Glob: 0
   File::Spec: 0
@@ -14,20 +21,143 @@ requires:
   Template: 2
   Tie::File: 0
   perl: 5.8.0
-build_requires:
-  FindBin: 0
-  Test::More: 0
-dynamic_config: 0
-provides:
-  Module::Build::DistVersion:
-    file: lib/Module/Build/DistVersion.pm
-    version: 0.03
-  Module::Build::DistVersion::SaveStats:
-    file: lib/Module/Build/DistVersion.pm
-generated_by: Module::Build version 0.2808
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.2.html
-  version: 1.2
-no_index:
-  directory:
-    - tools
+resources:
+  repository: git://github.com/madsen/module-build-distversion.git
+version: 0.04
+x_Dist_Zilla:
+  plugins:
+    -
+      class: Dist::Zilla::Plugin::VersionFromModule
+      name: '@CJM/VersionFromModule'
+      version: 0.08
+    -
+      class: Dist::Zilla::Plugin::GatherDir
+      name: '@CJM/GatherDir'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::PruneCruft
+      name: '@CJM/PruneCruft'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::ManifestSkip
+      name: '@CJM/ManifestSkip'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::MetaJSON
+      name: '@CJM/MetaJSON'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::MetaYAML
+      name: '@CJM/MetaYAML'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::License
+      name: '@CJM/License'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::PodSyntaxTests
+      name: '@CJM/PodSyntaxTests'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::PodCoverageTests
+      name: '@CJM/PodCoverageTests'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::ExtraTests
+      name: '@CJM/ExtraTests'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::PodLoom
+      config:
+        Pod::Loom version: 0.04
+      name: '@CJM/PodLoom'
+      version: 3.02
+    -
+      class: Dist::Zilla::Plugin::ModuleBuild
+      name: '@CJM/ModuleBuild'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::MetaConfig
+      name: '@CJM/MetaConfig'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::MatchManifest
+      name: '@CJM/MatchManifest'
+      version: 4.00
+    -
+      class: Dist::Zilla::Plugin::GitVersionCheckCJM
+      name: '@CJM/GitVersionCheckCJM'
+      version: 3.02
+    -
+      class: Dist::Zilla::Plugin::TemplateCJM
+      name: '@CJM/TemplateCJM'
+      version: 3.04
+    -
+      class: Dist::Zilla::Plugin::Repository
+      name: '@CJM/Repository'
+      version: 0.16
+    -
+      class: Dist::Zilla::Plugin::Git::Check
+      name: '@CJM/@Git/Check'
+      version: 1.103520
+    -
+      class: Dist::Zilla::Plugin::Git::Commit
+      name: '@CJM/@Git/Commit'
+      version: 1.103520
+    -
+      class: Dist::Zilla::Plugin::Git::Tag
+      name: '@CJM/@Git/Tag'
+      version: 1.103520
+    -
+      class: Dist::Zilla::Plugin::Git::Push
+      name: '@CJM/@Git/Push'
+      version: 1.103520
+    -
+      class: Dist::Zilla::Plugin::TestRelease
+      name: '@CJM/TestRelease'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::UploadToCPAN
+      name: '@CJM/UploadToCPAN'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::ArchiveRelease
+      name: '@CJM/ArchiveRelease'
+      version: 3.01
+    -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: runtime
+          type: requires
+      name: Prereqs
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: build
+          type: requires
+      name: BuildRequires
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::FinderCode
+      name: ':InstallModules'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::FinderCode
+      name: ':TestFiles'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::FinderCode
+      name: ':ExecFiles'
+      version: 4.200000
+    -
+      class: Dist::Zilla::Plugin::FinderCode
+      name: ':ShareFiles'
+      version: 4.200000
+  zilla:
+    class: Dist::Zilla::Dist::Builder
+    config:
+      is_trial: 0
+    version: 4.200000

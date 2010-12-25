@@ -1,4 +1,9 @@
-Module::Build::DistVersion version 0.03, released April 25, 2008
+Module::Build::DistVersion version 0.04, released December 24, 2010
+
+
+THIS MODULE IS DEPRECATED.  I'm now using Dist::Zilla (and
+Dist::Zilla::Plugin::TemplateCJM) instead.
+
 
 This is a subclass of Module::Build intended for module authors.
 It modifies the distdir action to collect the version number and
@@ -22,32 +27,32 @@ To install this module, run the following commands:
 	./Build install
 
 
+
 DEPENDENCIES
 
-Module::Build 0.28 or later
-Template Toolkit 2
-File::Spec
-Tie::File
+  Package        Minimum Version
+  -------------- ---------------
+  perl            5.8.0
+  File::Glob      
+  File::Spec      
+  Module::Build   0.28
+  Template        2
+  Tie::File
 
 
 
 CHANGES
-    Here's what's new in version 0.03 of Module::Build::DistVersion:
+    Here's what's new in version 0.04 of Module::Build::DistVersion:
     (See the file "Changes" for the full revision history.)
 
-	- Don't require =head1 VERSION if a module has no POD
-
-0.02   April 25, 2008
-	- Added optional changes=N argument
-	- Don't index the tools directory
-	- Note that subclasses should "use Module::Build"
-	  before trying to load Module::Build::DistVersion
+	- Module::Build::DistVersion is now deprecated.	 Its
+	  replacement is Dist::Zilla::Plugin::TemplateCJM.
 
 
 
 COPYRIGHT AND LICENSE
 
-Copyright 2008 Christopher J. Madsen
+This software is copyright (c) 2010 by Christopher J. Madsen.
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
